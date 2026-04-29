@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import SingleBook from "./SingleBook";
+import { FaSearch } from "react-icons/fa";
 
 const BookList = function ({ books }) {
   const [query, setQuery] = useState("");
   const booksSearched = books.filter(
     (book) =>
       book.title.toLowerCase().includes(query.toLowerCase()) ||
-      book.category.toLowerCase().includes(query.toLowerCase())||
-      Math.floor(book.price).toString().includes(query)
+      book.category.toLowerCase().includes(query.toLowerCase()) ||
+     book.price < Number(query)
   );
   return (
     <Container fluid>
@@ -21,7 +22,7 @@ const BookList = function ({ books }) {
             placeholder="Cerca un libro..."
           />
           <button>
-            <i className="bi bi-search"></i>
+            <FaSearch />
           </button>
         </Col>
       </Row>
